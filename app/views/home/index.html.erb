@@ -1,0 +1,29 @@
+<div class="container-fluid">
+<% if user_signed_in? %>
+<div class="row">
+ <div class="col-md-10">
+  <h4>Welcome,<%= link_to current_user.email, edit_user_registration_path %></h4>
+  </div>
+  <div class="col-md-2">
+
+  <h4><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></h4>
+  </div>
+  </div>
+  <h1>Create new posts</h1>
+
+<%= form_for(@photo) do |f| %>
+  <div class="form-group">
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+  <%= f.submit :post, class: 'btn btn-primary'%>
+<% end %>
+
+<% current_user.photos.each do |photo|%>
+    <%= photo.avatar %>
+  <% end %>
+
+<% else %>
+  <%= link_to 'Sign up', new_user_registration_path %>
+  <%= link_to 'Sign in', user_session_path %>
+<% end %>
+</div>
