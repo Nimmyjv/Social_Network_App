@@ -79,6 +79,8 @@ class CommentsController < ApplicationController
     end
 
     def set_photo
-      @photo = Photo.find(params[:comment][:photo_id])
+      # byebug
+      @photo = Photo.find(params[:photo_id])
+      # byebug
     end
 end

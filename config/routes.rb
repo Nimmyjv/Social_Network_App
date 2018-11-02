@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :comments
   	end
   end
+
   get 'home/index'
   devise_for :users
 
