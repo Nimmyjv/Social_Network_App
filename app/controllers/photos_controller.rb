@@ -1,17 +1,18 @@
 class PhotosController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :toggle_like]
 
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.where(:user_id => current_user.id)
+    @photos = Photo.all
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @comments = @photo.comments
   end
 
   # GET /photos/new
@@ -33,6 +34,17 @@ class PhotosController < ApplicationController
       redirect_to root_path
     else
       redirect_to root_path, notice: @photo.errors.full_messages.first
+    end
+  end
+
+  def toggle_like
+    like = @photo.likes.where(user_id: params[:user_id])
+    if like.present?
+      like.first.destroy
+      redirect_to photos_path
+    else
+      @photo.likes.create(user_id: params[:user_id])
+      redirect_to photos_path
     end
   end
 

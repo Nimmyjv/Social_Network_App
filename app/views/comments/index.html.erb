@@ -1,18 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @photo.user_id %>
-</p>
-
-<p>
-  <strong>Avatar:</strong>
-  <%= @photo.avatar %>
-</p>
-
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
-
 <h1>Comments</h1>
 
 <table>
@@ -38,4 +25,3 @@
 <br>
 
 <%= link_to 'New Comment', new_comment_path %>
-

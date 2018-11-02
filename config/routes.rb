@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :photos
+  resources :comments
+  resources :photos do
+  	member do
+  		get :toggle_like
+      resources :comments
+  	end
+  end
   get 'home/index'
   devise_for :users
 
