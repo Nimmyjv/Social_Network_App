@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_photo, only: [:create, :show, :edit, :update, :destroy]
+  before_action :set_photo
 
 
   # GET /comments
@@ -80,7 +80,7 @@ class CommentsController < ApplicationController
 
     def set_photo
       # byebug
-      @photo = Photo.find(params[:photo_id])
+      @photo = Photo.find(params[:photo_id]) if params[:photo_id]
       # byebug
     end
 end

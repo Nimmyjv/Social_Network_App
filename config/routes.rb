@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :comments
   resources :photos do
   	member do
   		get :toggle_like
-      resources :comments
-  	end
+    end
+    resources :comments
   end
 
   get 'home/index'
